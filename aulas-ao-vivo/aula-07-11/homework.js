@@ -6,11 +6,10 @@ let portasAbertas = 0;
 //Função que realiza sorteio de número aleatório
 const aleatorio = () => Math.round(Math.random() * 2 + 1);
 
-//Função principal que retorna a mensagem exibida no console
+//Função principal que retorna quantidade de portas abertas
 function sorteia() {
   sorteioAnterior = [...arr];
   let numIguais = 0;
-  let msg = "";
   //Para cada index do array, um número aleatório é adicionado
   for (let i = 0; i < arr.length; i++) {
     arr[i] = aleatorio();
@@ -20,25 +19,13 @@ function sorteia() {
     }
   }
 
-  //Mostra o Array atual e o anterior para facilitar comparação
-  console.log("Atual: ", arr);
-  console.log("Anterior", sorteioAnterior);
-
-  //Se os arrays são iguais, retorna a função
-  if (verificaIgualdade(arr)) {
+  //Verifica se os arrays são iguais
+  if (verificaIgualdade(arr) || numIguais >= 2) {
+    console.log(`Atual: ${arr}, Anterior: ${sorteioAnterior}`);
     portasAbertas++;
-    return "Porta (x): aberta";
   }
 
-  // Verifica se os números do array são todos iguais
-  if (numIguais >= 2) {
-    portasAbertas++;
-    msg = "Porta 1: aberta";
-  } else {
-    msg = "Tente de novamente!";
-  }
-
-  return msg;
+  return portasAbertas;
 }
 
 //Função que verifica se os arrays são iguais e retorna booleano
@@ -51,13 +38,17 @@ const verificaIgualdade = (arr) => {
   return contaNumIguais == 3 ? true : false;
 };
 
-// While usado para repetir o código 20 vezes para mostrar funcionamento
-
+// While usado para repetir o código 10 vezes para mostrar funcionamento
 let cont = 0;
-while (cont < 20) {
-  console.log(sorteia());
-  console.log("<--------------------->");
+while (cont < 10) {
+  sorteia();
+  if (portasAbertas == 3) {
+    console.log(`Parabéns você abriu as 3 portas em ${cont} tentativas`);
+    break;
+  }
   cont++;
 }
 
-console.log("Portas Abertas: ", portasAbertas);
+if (portasAbertas != 3) {
+  console.log(`Portas abertas: ${portasAbertas}. Não foi dessa vez :(`);
+}
