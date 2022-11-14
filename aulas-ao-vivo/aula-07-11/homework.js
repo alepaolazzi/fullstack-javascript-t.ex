@@ -1,4 +1,5 @@
 //Inicio das variáveis
+const botao = document.querySelector("[data-jogar]");
 let arr = [0, 0, 0];
 let sorteioAnterior;
 let portasAbertas = 0;
@@ -59,3 +60,6 @@ if (portasAbertas != 3) {
   let msg = `Suas portas abertas: ${portasAbertas}. Não foi dessa vez 🥺`;
   console.log(`%c${msg}`, stylePerde);
 }
+
+//Evento para recarregar a página
+botao.addEventListener("click", () => location.reload());

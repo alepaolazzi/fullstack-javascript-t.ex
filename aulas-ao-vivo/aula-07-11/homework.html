@@ -9,6 +9,7 @@
   <style>
     body {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
     }
@@ -16,6 +17,11 @@
     h1 {
       color: #960000;
       animation: 10s infinite ease-in-out alteraCor;
+    }
+
+    button {
+      margin-top: 1rem;
+      font-size: 1.3rem;
     }
 
     @keyframes alteraCor {
@@ -45,6 +51,7 @@
 
 <body>
   <h1>Necessário abrir o console 👨🏼‍💻</h1>
+  <button data-jogar>Jogar Novamente</button>
   <script src="./homework.js"></script>
 </body>
 
