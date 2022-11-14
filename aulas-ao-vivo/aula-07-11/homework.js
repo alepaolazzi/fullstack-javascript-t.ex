@@ -2,6 +2,9 @@
 let arr = [0, 0, 0];
 let sorteioAnterior;
 let portasAbertas = 0;
+const stylePorta = "color:#0000ff; font-size:1rem";
+const styleGanha = "color:#00ff00; font-size:1.2rem";
+const stylePerde = "color:#ff0000; font-size:1.2rem";
 
 //Função que realiza sorteio de número aleatório
 const aleatorio = () => Math.round(Math.random() * 2 + 1);
@@ -23,6 +26,8 @@ function sorteia() {
   if (verificaIgualdade(arr) || numIguais >= 2) {
     console.log(`Atual: ${arr}, Anterior: ${sorteioAnterior}`);
     portasAbertas++;
+    let portas = `Porta ${portasAbertas}: aberta`;
+    console.log(`%c${portas}`, stylePorta);
   }
 
   return portasAbertas;
@@ -43,12 +48,14 @@ let cont = 0;
 while (cont < 10) {
   sorteia();
   if (portasAbertas == 3) {
-    console.log(`Parabéns você abriu as 3 portas em ${cont} tentativas`);
+    let msg = `Parabéns! Você abriu as 3 portas em ${cont} tentativas ✨`;
+    console.log(`%c${msg}`, styleGanha);
     break;
   }
   cont++;
 }
 
 if (portasAbertas != 3) {
-  console.log(`Portas abertas: ${portasAbertas}. Não foi dessa vez :(`);
+  let msg = `Suas portas abertas: ${portasAbertas}. Não foi dessa vez 🥺`;
+  console.log(`%c${msg}`, stylePerde);
 }
